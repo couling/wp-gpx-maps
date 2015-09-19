@@ -3,7 +3,7 @@
 Plugin Name: WP-GPX-Maps
 Plugin URI: http://www.devfarm.it/
 Description: Draws a GPX track with altitude chart
-Version: 1.3.7
+Version: 1.3.8
 Author: Bastianon Massimo
 Author URI: http://www.pedemontanadelgrappa.it/
 */
@@ -67,20 +67,28 @@ function print_WP_GPX_Maps_styles()
 	.wpgpxmaps_summary .summarylabel { }
 	.wpgpxmaps_summary .summaryvalue { font-weight: bold; }
 	.wpgpxmaps .report { line-height:120%; }
-	.wpgpxmaps .gmnoprint div:first-child { height: 20px; }	
+	.wpgpxmaps .gmnoprint div:first-child {  }	
 	.wpgpxmaps .wpgpxmaps_osm_footer {
 		position: absolute;
 		left: 0;
 		right: 0;
 		bottom: 0;
 		width: 100%;
-		height: 25px;
+		height: 13px;
 		margin: 0;
-		padding: 6px;
 		z-index: 999;
 		background: WHITE;
 		font-size: 12px;
 	}
+	
+	.wpgpxmaps .wpgpxmaps_osm_footer span {
+		background: WHITE;
+		padding: 0 6px 6px 6px;
+		vertical-align: baseline;
+		position: absolute;
+		bottom: 0;
+	}	
+	
 </style>
 <?php
 }
@@ -614,7 +622,7 @@ function handle_WP_GPX_Maps_Shortcodes($attr, $content='')
 		<div id="wpgpxmaps_'.$r.'" class="wpgpxmaps">
 			<div id="map_'.$r.'_cont" style="width:'.$w.'; height:'.$mh.';position:relative" >
 				<div id="map_'.$r.'" style="width:'.$w.'; height:'.$mh.'"></div>
-				<div id="wpgpxmaps_'.$r.'_osm_footer" class="wpgpxmaps_osm_footer" style="display:none;">&copy; <a href="http://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors</div>			
+				<div id="wpgpxmaps_'.$r.'_osm_footer" class="wpgpxmaps_osm_footer" style="display:none;"><span> &copy; <a href="http://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors</span></div>			
 			</div>
 			<div id="hchart_'.$r.'" class="plot" style="width:'.$w.'; height:'.$gh.'"></div>
 			<div id="ngimages_'.$r.'" class="ngimages" style="display:none">'.$ngimgs_data.'</div>
