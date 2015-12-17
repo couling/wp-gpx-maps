@@ -584,7 +584,6 @@
 			$gpx->registerXPathNamespace('10', 'http://www.topografix.com/GPX/1/0'); 
 			$gpx->registerXPathNamespace('11', 'http://www.topografix.com/GPX/1/1'); 
 			$nodes = $gpx->xpath('//wpt | //10:wpt | //11:wpt');
-			
 			global $wpdb;
 			
 			if ( count($nodes) > 0 )	
