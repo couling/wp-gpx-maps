@@ -5,7 +5,7 @@ Donate link: https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&hosted_button_i
 Tags: maps, gpx, gps, graph, chart, google maps, track, garmin, image, nextgen-gallery, nextgen, exif, OpenStreetMap, OpenCycleMap, Hike&Bike, heart rate, heartrate, cadence
 Requires at least: 2.0.0
 Tested up to: 4.4.1
-Stable tag: 1.3.11
+Stable tag: 1.3.10
 
 Draws a gpx track with altitude graph. You can also display your nextgen gallery images in the map.
 
@@ -154,8 +154,8 @@ Yes!
 1. Altitude & Speed & Hearth rate
 
 == Changelog ==
-= 1.3.10 =
-* new Slovak language (thanks to Dan)
+= 1.3.12 =
+* Fix incompatibility with Debian PHP7 (thanks to phbaer) https://github.com/devfarm-it/wp-gpx-maps/pull/5
 = 1.3.10 =
 * Improved german translations (thanks to Konrad) http://tadesse.de/7882/2015-wanderung-ostrov-tisa-ii/
 = 1.3.9 =
