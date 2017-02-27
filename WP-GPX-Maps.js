@@ -937,26 +937,28 @@ Author URI: http://www.pedemontanadelgrappa.it/
 				l_y_arr.push(l_y);
 			}
 			
-			if (graphSpeed != '')
-			{
-				
-				if (unitspeed == '5') // knots
+			if (graphSpeed != '')			{
+				if (unitspeed == '6') /* min/100m */				
+				{					
+					l_s = { suf : "min/100m", dec : 2 };				
+				} 
+				else if (unitspeed == '5') /* knots */
 				{
 					l_s = { suf : "knots", dec : 2 };
 				} 
-				else if (unitspeed == '4') // min/miles
+				else if (unitspeed == '4') /* min/miles */
 				{
 					l_s = { suf : "min/mi", dec : 2 };
 				} 
-				else if (unitspeed == '3') // min/km
+				else if (unitspeed == '3') /* min/km */
 				{
 					l_s = { suf : "min/km", dec : 2 };
 				} 
-				else if (unitspeed == '2') // miles/h
+				else if (unitspeed == '2') /* miles/h */
 				{
 					l_s = { suf : "mi/h", dec : 0 };
 				} 
-				else if (unitspeed == '1') // km/h
+				else if (unitspeed == '1') /* km/h */
 				{
 					l_s = { suf : "km/h", dec : 0 };
 				} 
