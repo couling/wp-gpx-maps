@@ -155,7 +155,7 @@ Yes!
 
 == Changelog ==
 = 1.3.14 =
-* Added Thunderforest Api Key on settings: for OpenCycleMap
+* Added Thunderforest Api Key on settings (OpenCycleMap)
 = 1.3.13 =
 * Added google maps api key on settings
 * Removed parameter 'sensor' on google maps js
