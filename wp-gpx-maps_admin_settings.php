@@ -36,8 +36,8 @@
 	$total_time = get_option("wpgpxmaps_summary_total_time");
 	
 	$usegpsposition = get_option("wpgpxmaps_usegpsposition");	
-	$distanceType = get_option("wpgpxmaps_distance_type");			$distanceType = get_option("wpgpxmaps_googlemapsv3_apikey");	
-	
+	$distanceType = get_option("wpgpxmaps_distance_type");			
+
 	if (empty($showEle))
 		$showEle = "true";
 	
@@ -102,11 +102,23 @@
 				<input name="wpgpxmaps_usegpsposition" type="checkbox" value="true" <?php if($usegpsposition == true){echo('checked');} ?> onchange="this.value = (this.checked)"  /> <i>Allow users to use browser GPS in order to display their current position on map</i>
 			</td>
 		</tr>
-		<tr>			<th scope="row">Google maps api key:</th>			<td>				<input name="wpgpxmaps_googlemapsv3_apikey" type="text" id="wpgpxmaps_googlemapsv3_apikey" value="<?php echo get_option('wpgpxmaps_googlemapsv3_apikey'); ?>" style="width:400px" /> <em> Go to the <a href="https://developers.google.com/maps/documentation/javascript/" target="_blank">Google API Console</a> and click &#8216;Get A Key&#8217; </em>			</td>		</tr>			</table>
+		<tr>			
+			<th scope="row">Google maps api key:</th>			
+			<td>				
+				<input name="wpgpxmaps_googlemapsv3_apikey" type="text" id="wpgpxmaps_googlemapsv3_apikey" value="<?php echo get_option('wpgpxmaps_googlemapsv3_apikey'); ?>" style="width:400px" /> <em> Go to the <a href="https://developers.google.com/maps/documentation/javascript/" target="_blank">Google API Console</a> and click &#8216;Get A Key&#8217; </em>			
+			</td>		
+		</tr>			
+		<tr>			
+			<th scope="row">Thunderforest api key (Open Cycle Map):</th>			
+			<td>				
+				<input name="wpgpxmaps_openstreetmap_apikey" type="text" id="wpgpxmaps_openstreetmap_apikey" value="<?php echo get_option('wpgpxmaps_openstreetmap_apikey'); ?>" style="width:400px" /> <em> Go to <a href="http://www.thunderforest.com/docs/apikeys/" target="_blank">Thunderforest API Keys</a> and click &#8216;signing in to your Thunderforest account&#8217; </em>			
+			</td>		
+		</tr>	
+	</table>
 	
 	<p class="submit">
 		<input type="hidden" name="action" value="update" />
-    	<input name="page_options" type="hidden" value="wpgpxmaps_height,wpgpxmaps_graph_height,wpgpxmaps_width,wpgpxmaps_download,wpgpxmaps_skipcache,wpgpxmaps_distance_type,wpgpxmaps_usegpsposition,wpgpxmaps_googlemapsv3_apikey" />
+    	<input name="page_options" type="hidden" value="wpgpxmaps_height,wpgpxmaps_graph_height,wpgpxmaps_width,wpgpxmaps_download,wpgpxmaps_skipcache,wpgpxmaps_distance_type,wpgpxmaps_usegpsposition,wpgpxmaps_googlemapsv3_apikey,wpgpxmaps_openstreetmap_apikey" />
 		<input type="submit" class="button-primary" value="<?php _e('Save Changes', "wp_gpx_maps") ?>" />
 	</p>
 

@@ -5,7 +5,7 @@ Donate link: https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&hosted_button_i
 Tags: maps, gpx, gps, graph, chart, google maps, track, garmin, image, nextgen-gallery, nextgen, exif, OpenStreetMap, OpenCycleMap, Hike&Bike, heart rate, heartrate, cadence
 Requires at least: 2.0.0
 Tested up to: 4.7.2
-Stable tag: 1.3.13
+Stable tag: 1.3.14
 
 Draws a gpx track with altitude graph. You can also display your nextgen gallery images in the map.
 
@@ -153,7 +153,10 @@ Yes!
 1. Altitude & Speed
 1. Altitude & Speed & Hearth rate
 
-== Changelog === 1.3.13 =
+== Changelog ==
+= 1.3.14 =
+* Added Thunderforest Api Key on settings: for OpenCycleMap
+= 1.3.13 =
 * Added google maps api key on settings
 * Removed parameter 'sensor' on google maps js
 * Added unit of measure of speed for swimmers: min/100 meters
