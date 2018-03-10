@@ -5,7 +5,8 @@
 
 ?>
 
-<script type="text/javascript" src="http://meta100.github.com/mColorPicker/javascripts/mColorPicker_min.js" charset="UTF-8"></script>
+<script type="text/javascript" src="//meta100.github.com/mColorPicker/javascripts/mColorPicker_min.js" charset="UTF-8"></script>
+
 
 <?php
 	

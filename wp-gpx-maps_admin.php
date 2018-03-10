@@ -13,7 +13,7 @@ function wpgpxmaps_admin_menu() {
 	}
 }
 
-function ilc_admin_tabs( $current  ) {
+function wpgpxmaps_ilc_admin_tabs( $current  ) {
 
 	if (current_user_can('manage_options'))
 	{
@@ -76,7 +76,7 @@ function WP_GPX_Maps_html_page() {
 		}
 	}
 
-	ilc_admin_tabs($tab);	
+	wpgpxmaps_ilc_admin_tabs($tab);	
 	
 	if ($tab == "tracks")
 	{

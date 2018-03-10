@@ -1,13 +1,13 @@
 <?php
 
-	function isNGGalleryActive() {
+	function wpgpxmaps_isNGGalleryActive() {
 		if (!function_exists('is_plugin_active')) {
 			require_once(sitePath() . '/wp-admin/includes/plugin.php');
 		}
 		return is_plugin_active("nextgen-gallery/nggallery.php");
 	}
 	
-	function isNGGalleryProActive() {
+	function wpgpxmaps_isNGGalleryProActive() {
 		if (!function_exists('is_plugin_active')) {
 			require_once(sitePath() . '/wp-admin/includes/plugin.php');
 		}
@@ -22,7 +22,7 @@
 		$galids = explode(',', $ngGalleries);
 		$imgids = explode(',', $ngImages);
 		
-		if (!isNGGalleryActive())
+		if (!wpgpxmaps_isNGGalleryActive())
 			return '';
 		try {
 

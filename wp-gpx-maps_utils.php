@@ -2,7 +2,7 @@
 
 	require_once("wp-gpx-maps_utils_nggallery.php");
 
-	function getAttachedImages($dt, $lat, $lon, $dtoffset, &$error)
+	function wpgpxmaps_getAttachedImages($dt, $lat, $lon, $dtoffset, &$error)
 	{
 		$result = array();
 			
