@@ -143,7 +143,7 @@ function handle_WP_GPX_Maps_folder_Shortcodes($attr, $content='') {
 	$uom =                wpgpxmaps_findValue($attr, "uom",                "wpgpxmaps_unit_of_measure",        "0");
 	
 	// fix folder path
-	$sitePath = sitePath();	
+	$sitePath = wp_gpx_maps_sitePath();	
 	$folder = trim($folder);
 	$folder = str_replace(array('/', '\\'), DIRECTORY_SEPARATOR, $folder);
 	$folder = $sitePath . $folder;	
@@ -282,7 +282,7 @@ function handle_WP_GPX_Maps_Shortcodes($attr, $content='')
 	$gpxurl = $gpx;
 		
 	// Add file modification time to cache filename to catch new uploads with same file name
-	$mtime = sitePath() . str_replace(array('/', '\\'), DIRECTORY_SEPARATOR, trim($gpx));
+	$mtime = wp_gpx_maps_sitePath() . str_replace(array('/', '\\'), DIRECTORY_SEPARATOR, trim($gpx));
 	if(file_exists($mtime)) {
 		$mtime = filemtime($mtime);
 	} else {
@@ -355,7 +355,7 @@ function handle_WP_GPX_Maps_Shortcodes($attr, $content='')
 	if ((!isset($points_maps) || $points_maps == '') && $gpx != '')	{
 	//if (true)	{
 	
-		$sitePath = sitePath();
+		$sitePath = wp_gpx_maps_sitePath();
 		
 		$gpx = trim($gpx);
 		

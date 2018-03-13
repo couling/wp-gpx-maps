@@ -62,7 +62,7 @@
 		return $result;
 	}
 
-	function sitePath()
+	function wp_gpx_maps_sitePath()
 	{
 		return substr(get_home_path(), 0, -1);
 	}
@@ -95,7 +95,7 @@
 	
 	function relativeGpxFolderPath()
 	{
-		$sitePath = sitePath();
+		$sitePath = wp_gpx_maps_sitePath();
 		$realGpxPath = gpxFolderPath();
 		$ret = str_replace($sitePath,'',$realGpxPath).DIRECTORY_SEPARATOR;
 		return str_replace(array('/', '\\'), DIRECTORY_SEPARATOR, $ret);

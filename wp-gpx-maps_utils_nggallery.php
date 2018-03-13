@@ -2,14 +2,14 @@
 
 	function wpgpxmaps_isNGGalleryActive() {
 		if (!function_exists('is_plugin_active')) {
-			require_once(sitePath() . '/wp-admin/includes/plugin.php');
+			require_once(wp_gpx_maps_sitePath() . '/wp-admin/includes/plugin.php');
 		}
 		return is_plugin_active("nextgen-gallery/nggallery.php");
 	}
 	
 	function wpgpxmaps_isNGGalleryProActive() {
 		if (!function_exists('is_plugin_active')) {
-			require_once(sitePath() . '/wp-admin/includes/plugin.php');
+			require_once(wp_gpx_maps_sitePath() . '/wp-admin/includes/plugin.php');
 		}
 		return is_plugin_active("nextgen-gallery-pro/nggallery-pro.php");
 	}
