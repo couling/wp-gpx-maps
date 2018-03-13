@@ -2,7 +2,7 @@
 Plugin Name: WP-GPX-Maps
 Plugin URI: http://www.devfarm.it/
 Description: Draws a gpx track with altitude graph
-Version: 1.5.00
+Version: 1.5.02
 Author: Bastianon Massimo
 Author URI: http://www.devfarm.it/
 */
@@ -779,6 +779,13 @@ Author URI: http://www.devfarm.it/
 					datasets: [],
 				},
 				options: {
+					animation: {
+						//duration: 0, // general animation time
+					},
+					hover: {
+						//animationDuration: 0, // duration of animations when hovering an item
+					},
+					//responsiveAnimationDuration: 0, // animation duration after a resize
 					customLine: {
 						color: 'gray'
 					},
@@ -798,9 +805,9 @@ Author URI: http://www.devfarm.it/
 			            }]
 					},
 					tooltips: {
-						position: 'nearest',
+						position: 'average',
 						mode: 'index',
-						intersect: true,
+						intersect: false,
 						callbacks : {
 							title: function(tooltipItems, data) {
 								//Return value for title

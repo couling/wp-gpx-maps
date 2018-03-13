@@ -42,7 +42,6 @@ function WP_GPX_Maps_html_page() {
 	if ($tab == '')
 		$tab = 'tracks';
 	
-
 ?>
 	<div id="icon-themes" class="icon32"><br></div>
 		<h2>WP GPX Settings</h2>	

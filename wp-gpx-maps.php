@@ -3,7 +3,7 @@
 Plugin Name: WP-GPX-Maps
 Plugin URI: http://www.devfarm.it/
 Description: Draws a GPX track with altitude chart
-Version: 1.5.01
+Version: 1.5.02
 Author: Bastianon Massimo
 Author URI: http://www.devfarm.it/
 */
@@ -20,6 +20,7 @@ register_deactivation_hook( __FILE__, 'WP_GPX_Maps_remove');
 add_filter('plugin_action_links', 'WP_GPX_Maps_action_links', 10, 2);
 add_action('wp_print_styles', 'print_WP_GPX_Maps_styles' );
 add_action('wp_enqueue_scripts', 'enqueue_WP_GPX_Maps_scripts');
+add_action('admin_enqueue_scripts', 'enqueue_WP_GPX_Maps_scripts_admin' ); 
 add_action('plugins_loaded' ,'WP_GPX_Maps_lang_init');
 
 function WP_GPX_Maps_lang_init() {
@@ -46,10 +47,21 @@ function WP_GPX_Maps_action_links($links, $file) {
     return $links;
 }
 
+function enqueue_WP_GPX_Maps_scripts_admin($hook)
+{	
+	if ( strpos($hook, 'WP-GPX-Maps') !== false )
+	{
+		wp_register_script('bootstrap-table', plugins_url( '/js/bootstrap-table.min.js', __FILE__ ), array(), "1.11.1" );
+		wp_enqueue_script('bootstrap-table');
+		wp_register_style('bootstrap-table', plugins_url( '/css/bootstrap-table.min.css', __FILE__ ), array(), "1.11.1" );
+		wp_enqueue_style('bootstrap-table');		
+	}
+}
+
 function enqueue_WP_GPX_Maps_scripts() {		
 
 	wp_register_script('chartjs', plugins_url( '/js/Chart.min.js', __FILE__ ), array(), "2.7.2" );
-	wp_register_script('WP-GPX-Maps', plugins_url( '/js/WP-GPX-Maps.js', __FILE__ ), array('jquery','googlemaps','chartjs'), "1.5.00" );
+	wp_register_script('WP-GPX-Maps', plugins_url( '/js/WP-GPX-Maps.js', __FILE__ ), array('jquery','googlemaps','chartjs'), "1.5.02" );
 
 	$wpgpxmaps_googlemapsv3_apikey = get_option('wpgpxmaps_googlemapsv3_apikey');
 	
@@ -63,6 +75,7 @@ function enqueue_WP_GPX_Maps_scripts() {
 	wp_enqueue_script('jquery');
 	wp_enqueue_script('chartjs'); 	
     wp_enqueue_script('WP-GPX-Maps');
+	
 }
 
 function print_WP_GPX_Maps_styles() {

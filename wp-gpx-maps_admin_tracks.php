@@ -1,8 +1,13 @@
 <?php
 
-	if ( !is_admin() )
+	if ( !(is_admin()) )
 		return;
 	
+	$is_admin = current_user_can( 'manage_options' );
+	
+	if ( $is_admin != 1 )
+		return;
+
 	$gpxRegEx = '/.gpx$/';
 
 	if ( isset($_POST['clearcache']) )
@@ -15,12 +20,6 @@
 	
 	?>
 
-		<!-- Latest compiled and minified CSS -->
-		<link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/bootstrap-table/1.11.1/bootstrap-table.min.css">
-
-		<!-- Latest compiled and minified JavaScript -->
-		<script src="//cdnjs.cloudflare.com/ajax/libs/bootstrap-table/1.11.1/bootstrap-table.min.js"></script>
-	
 		<div class="tablenav top">
 			<form enctype="multipart/form-data" method="POST" style="float:left; margin:5px 20px 0 0" action="/wp-admin/options-general.php?page=WP-GPX-Maps">
 				Choose a file to upload: <input name="uploadedfile[]" type="file" onchange="submitgpx(this);" multiple />
