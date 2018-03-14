@@ -49,8 +49,9 @@ function WP_GPX_Maps_action_links($links, $file) {
 
 function enqueue_WP_GPX_Maps_scripts_admin($hook)
 {	
-	if ( strpos($hook, 'WP-GPX-Maps') !== false )
-	{
+	if ( strpos($hook, 'WP-GPX-Maps') !== false ) {		
+		wp_register_script('mColorPicker', plugins_url( '/js/mColorPicker_min.js', __FILE__ ), array(), "1.0 r39" );
+		wp_enqueue_script('mColorPicker');			
 		wp_register_script('bootstrap-table', plugins_url( '/js/bootstrap-table.min.js', __FILE__ ), array(), "1.11.1" );
 		wp_enqueue_script('bootstrap-table');
 		wp_register_style('bootstrap-table', plugins_url( '/css/bootstrap-table.min.css', __FILE__ ), array(), "1.11.1" );
@@ -155,7 +156,7 @@ function handle_WP_GPX_Maps_folder_Shortcodes($attr, $content='') {
 		if (substr($file, - 4) == ".gpx" ) {
 		
 			$gpx = $folder . DIRECTORY_SEPARATOR . $file;
-			$points = getPoints($gpx, $pointsoffset, $donotreducegpx, $distanceType);
+			$points = wpgpxmaps_getPoints($gpx, $pointsoffset, $donotreducegpx, $distanceType);
 				
 			$points_maps = '';
 			$points_graph_dist = '';
@@ -371,7 +372,7 @@ function handle_WP_GPX_Maps_Shortcodes($attr, $content='')
 			return "No gpx found";
 		}
 		
-		$points = getPoints( $gpx, $pointsoffset, $donotreducegpx, $distanceType);
+		$points = wpgpxmaps_getPoints( $gpx, $pointsoffset, $donotreducegpx, $distanceType);
 		
 		$points_maps = '';
 		$points_graph_dist = '';
@@ -536,7 +537,7 @@ function handle_WP_GPX_Maps_Shortcodes($attr, $content='')
 		$waypoints = '[]';
 		
 		if ($showW == true) {
-			$wpoints = getWayPoints($gpx);
+			$wpoints = wpgpxmaps_getWayPoints($gpx);
 			/*
 			foreach ($wpoints as $p) {
 				$waypoints .= '['.number_format ( (float)$p[0] , 7 , '.' , '' ).','.number_format ( (float)$p[1] , 7 , '.' , '' ).',\''.unescape($p[4]).'\',\''.unescape($p[5]).'\',\''.unescape($p[7]).'\'],';

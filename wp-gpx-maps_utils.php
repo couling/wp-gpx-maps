@@ -101,7 +101,7 @@
 		return str_replace(array('/', '\\'), DIRECTORY_SEPARATOR, $ret);
 	}
 
-	function recursive_remove_directory($directory, $empty=FALSE)
+	function wpgpxmaps_recursive_remove_directory($directory, $empty=FALSE)
 	{
 		if(substr($directory,-1) == '/')
 		{
@@ -120,7 +120,7 @@
 					$path = $directory.'/'.$item;
 					if(is_dir($path)) 
 					{
-						recursive_remove_directory($path);
+						wpgpxmaps_recursive_remove_directory($path);
 					}else{
 						unlink($path);
 					}
@@ -138,7 +138,7 @@
 		return TRUE;
 	}
 
-	function getPoints($gpxPath, $gpxOffset = 10, $donotreducegpx, $distancetype)
+	function wpgpxmaps_getPoints($gpxPath, $gpxOffset = 10, $donotreducegpx, $distancetype)
 	{
 
 		$points = array();
@@ -151,7 +151,7 @@
 				
 		if (file_exists($gpxPath))
 		{
-			$points = @parseXml($gpxPath, $gpxOffset, $distancetype);			
+			$points = @wpgpxmaps_parseXml($gpxPath, $gpxOffset, $distancetype);			
 		}
 		else
 		{
@@ -185,7 +185,7 @@
 		return $points;
 	}
 
-	function parseXml($filePath, $gpxOffset, $distancetype)
+	function wpgpxmaps_parseXml($filePath, $gpxOffset, $distancetype)
 	{
 
 		$points = null;
@@ -567,7 +567,7 @@
 		return $points;
 	}	
 	
-	function getWayPoints($gpxPath)
+	function wpgpxmaps_getWayPoints($gpxPath)
 	{
 		$points = array();
 		if (file_exists($gpxPath))

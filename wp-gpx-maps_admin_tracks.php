@@ -7,13 +7,21 @@
 	
 	if ( $is_admin != 1 )
 		return;
-
+	
 	$gpxRegEx = '/.gpx$/';
 
 	if ( isset($_POST['clearcache']) )
 	{
-		echo "Cache is now empty!";
-		recursive_remove_directory($cacheGpxPath,true);
+		
+		if ( isset($_GET['_wpnonce']) 
+			&& 
+			wp_verify_nonce( $_GET['_wpnonce'], 'wpgpx_clearcache_nonce' . $entry ) 
+			) 
+		{				
+			echo "Cache is now empty!";
+			wpgpxmaps_recursive_remove_directory($cacheGpxPath, true);			
+		}
+		
 	}
 
 	if ( is_writable ( $realGpxPath ) ){
@@ -47,8 +55,8 @@
 				?>
 			</form>
 			
-			<form method="POST" style="float:left; margin:5px 20px 0 0">
-				<input type="submit" name="clearcache" value="Clear Cache" />
+			<form method="POST" style="float:left; margin:5px 20px 0 0" action="/wp-admin/options-general.php?page=WP-GPX-Maps&_wpnonce=<?php echo wp_create_nonce( 'wpgpx_clearcache_nonce' ) ?>" >
+				<input type="submit" name="clearcache" value="Clear Cache" />				
 			</form>		
 			
 		</div>	
@@ -115,7 +123,10 @@
 			}
 		closedir($handle);
 	} 
-	?>
+	
+	$wpgpxmaps_gpxRelativePath = get_site_url(null, '/wp-content/uploads/gpx/');
+	
+?>
 	
 	<table id="table" class="wp-list-table widefat plugins"></table>
 	
@@ -140,7 +151,7 @@
 					'<b>' + row.name + '</b><br />',
 					'<a class="delete_gpx_row" href="/wp-admin/options-general.php?page=WP-GPX-Maps&_wpnonce=' + row.nonce + '" >Delete</a>',
 					' | ',
-					'<a href="../wp-content/uploads/gpx/' + row.name + '">Download</a>',
+					'<a href="<?php echo $wpgpxmaps_gpxRelativePath ?>' + row.name + '">Download</a>',
 					' | ',
 					'Shortcode: [sgpx gpx="<?php echo $relativeGpxPath ?>' + row.name + '"]',
 				].join('')
