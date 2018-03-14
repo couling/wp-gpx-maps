@@ -74,9 +74,9 @@
 			if (preg_match($gpxRegEx, $entry ))
 			{
 
-				if ( isset($_GET['wpgpxmaps_nonce']) 
+				if ( isset($_GET['_wpnonce']) 
 					&& 
-					wp_verify_nonce( $_GET['wpgpxmaps_nonce'], 'wpgpx_deletefile_nonce_' . $entry ) 
+					wp_verify_nonce( $_GET['_wpnonce'], 'wpgpx_deletefile_nonce_' . $entry ) 
 					) { 
 
 					if ( file_exists($realGpxPath ."/". $entry) )
@@ -138,7 +138,7 @@
 
 				return [
 					'<b>' + row.name + '</b><br />',
-					'<a class="delete_gpx_row" href="/wp-admin/options-general.php?page=WP-GPX-Maps&wpgpxmaps_nonce=' + row.nonce + '" >Delete</a>',
+					'<a class="delete_gpx_row" href="/wp-admin/options-general.php?page=WP-GPX-Maps&_wpnonce=' + row.nonce + '" >Delete</a>',
 					' | ',
 					'<a href="../wp-content/uploads/gpx/' + row.name + '">Download</a>',
 					' | ',
