@@ -1,5 +1,7 @@
 <?php
 
+	require_once(ABSPATH . 'wp-admin/includes/file.php');
+
 	require_once("wp-gpx-maps_utils_nggallery.php");
 
 	function wpgpxmaps_getAttachedImages($dt, $lat, $lon, $dtoffset, &$error)
