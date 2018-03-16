@@ -3,7 +3,7 @@
 Plugin Name: WP-GPX-Maps
 Plugin URI: http://www.devfarm.it/
 Description: Draws a GPX track with altitude chart
-Version: 1.5.03
+Version: 1.5.04
 Author: Bastianon Massimo
 Author URI: http://www.devfarm.it/
 */
@@ -62,7 +62,7 @@ function enqueue_WP_GPX_Maps_scripts_admin($hook)
 function enqueue_WP_GPX_Maps_scripts() {		
 
 	wp_register_script('chartjs', plugins_url( '/js/Chart.min.js', __FILE__ ), array(), "2.7.2" );
-	wp_register_script('WP-GPX-Maps', plugins_url( '/js/WP-GPX-Maps.js', __FILE__ ), array('jquery','googlemaps','chartjs'), "1.5.02" );
+	wp_register_script('WP-GPX-Maps', plugins_url( '/js/WP-GPX-Maps.js', __FILE__ ), array('jquery','googlemaps','chartjs'), "1.5.031" );
 
 	$wpgpxmaps_googlemapsv3_apikey = get_option('wpgpxmaps_googlemapsv3_apikey');
 	
@@ -153,7 +153,7 @@ function handle_WP_GPX_Maps_folder_Shortcodes($attr, $content='') {
 	
 	foreach($files as $file) {
 	
-		if (substr($file, - 4) == ".gpx" ) {
+		if (strtolower(substr($file, - 4)) == ".gpx" ) {
 		
 			$gpx = $folder . DIRECTORY_SEPARATOR . $file;
 			$points = wpgpxmaps_getPoints($gpx, $pointsoffset, $donotreducegpx, $distanceType);

@@ -66,7 +66,8 @@
 
 	function wp_gpx_maps_sitePath()
 	{
-		return substr(get_home_path(), 0, -1);
+		return substr(substr(__FILE__, 0, strrpos(__FILE__,'wp-content')), 0, -1);
+		//return substr(get_home_path(), 0, -1);
 	}
 
 	function gpxFolderPath()

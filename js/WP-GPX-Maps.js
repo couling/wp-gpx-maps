@@ -798,8 +798,7 @@ Author URI: http://www.devfarm.it/
 								max: graphDist[graphDist.length-1],
 								// Include a dollar sign in the ticks
 								callback: function(value, index, values) {
-									var fpt = _formats[0];
-									return Math.round(value, fpt.dec) + fpt.suf;
+									return Math.round(value, l_x.dec) + l_x.suf;
 								}
 							}
 			            }]

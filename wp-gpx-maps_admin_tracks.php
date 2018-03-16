@@ -8,7 +8,7 @@
 	if ( $is_admin != 1 )
 		return;
 	
-	$gpxRegEx = '/.gpx$/';
+	$gpxRegEx = '/.gpx$/i';
 
 	if ( isset($_POST['clearcache']) )
 	{
