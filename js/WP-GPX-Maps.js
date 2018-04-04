@@ -2,7 +2,7 @@
 Plugin Name: WP-GPX-Maps
 Plugin URI: http://www.devfarm.it/
 Description: Draws a gpx track with altitude graph
-Version: 1.5.02
+Version: 1.5.05
 Author: Bastianon Massimo
 Author URI: http://www.devfarm.it/
 */
@@ -778,6 +778,7 @@ Author URI: http://www.devfarm.it/
 				data: {
 					datasets: [],
 				},
+				borderWidth: 1,
 				options: {
 					animation: {
 						//duration: 0, // general animation time
@@ -958,7 +959,7 @@ Author URI: http://www.devfarm.it/
 				}
 				_formats.push(l_y)
 				hoptions.options.scales.yAxes.push(yaxe);
-				hoptions.data.datasets.push( getDataset(lng.altitude, myData.Items, color2, yaxe.id ));		
+				hoptions.data.datasets.push( wpgpxmapsGetDataset(lng.altitude, myData.Items, color2, yaxe.id ));		
 
 			}
 			
@@ -1028,7 +1029,7 @@ Author URI: http://www.devfarm.it/
 				
 				_formats.push(l_s);
 				hoptions.options.scales.yAxes.push(yaxe);
-				hoptions.data.datasets.push( getDataset(lng.speed, myData.Items, color3, yaxe.id ) );			
+				hoptions.data.datasets.push( wpgpxmapsGetDataset(lng.speed, myData.Items, color3, yaxe.id ) );			
 
 			}
 			
@@ -1051,7 +1052,7 @@ Author URI: http://www.devfarm.it/
 				};
 
 				hoptions.options.scales.yAxes.push(yaxe);
-				hoptions.data.datasets.push( getDataset(lng.heartRate, myData.Items, color4, yaxe.id ) );			
+				hoptions.data.datasets.push( wpgpxmapsGetDataset(lng.heartRate, myData.Items, color4, yaxe.id ) );			
 				_formats.push(l_hr);
 			}
 			
@@ -1075,7 +1076,7 @@ Author URI: http://www.devfarm.it/
 				};
 				
 				hoptions.options.scales.yAxes.push(yaxe);
-				hoptions.data.datasets.push( getDataset(lng.atemp, myData,Items, color7, yaxe.id ) );			
+				hoptions.data.datasets.push( wpgpxmapsGetDataset(lng.atemp, myData,Items, color7, yaxe.id ) );			
 				_formats.push({ suf : "°C", dec : 1 });
 				
 			}
@@ -1100,7 +1101,7 @@ Author URI: http://www.devfarm.it/
 				};
 									
 				hoptions.options.scales.yAxes.push(yaxe);
-				hoptions.data.datasets.push( getDataset(lng.cadence, myData.Items, color5, yaxe.id) );
+				hoptions.data.datasets.push( wpgpxmapsGetDataset(lng.cadence, myData.Items, color5, yaxe.id) );
 				_formats.push(l_cad);
 				
 			}
@@ -1125,7 +1126,7 @@ Author URI: http://www.devfarm.it/
 				
 				_formats.push(l_grade);
 				hoptions.options.scales.yAxes.push(yaxe);
-				hoptions.data.datasets.push( getDataset(lng.grade, myData.Items, color6, yaxe.id ) );			
+				hoptions.data.datasets.push( wpgpxmapsGetDataset(lng.grade, myData.Items, color6, yaxe.id ) );			
 				
 			}
 			
@@ -1180,14 +1181,14 @@ Author URI: http://www.devfarm.it/
 		
 	}
 	
-	function getDataset(name,data,color, id) {
+	function wpgpxmapsGetDataset(name,data,color, id) {
 		return {
 			label: name,
 			data : data,
 			borderColor: color,
 			backgroundColor: hexToRgbA(color, .3),
 			pointRadius: 0,
-			borderWidth: 0,
+			borderWidth: 1,
 			pointHoverRadius: 1,
 			yAxisID: id,
 		}
@@ -1273,7 +1274,7 @@ Author URI: http://www.devfarm.it/
 			if (points[i]==null)
 				continue;
 		
-			var d = dist(points[i][0], points[i][1], lat, lon);
+			var d = wpgpxmapsDist(points[i][0], points[i][1], lat, lon);
 			if ( d < dd )
 			{
 				ii = i;
@@ -1296,7 +1297,7 @@ Author URI: http://www.devfarm.it/
 			imageLat = imageLat.replace(",", ".");
 			imageLon = imageLon.replace(",", ".");
 			
-			var d = dist(imageLat, imageLon, lat, lon);
+			var d = wpgpxmapsDist(imageLat, imageLon, lat, lon);
 			if ( d < dd )
 			{
 				img = img_spans[i];
@@ -1311,7 +1312,7 @@ Author URI: http://www.devfarm.it/
 		return (RE.test(input));
 	}
 
-	function dist(lat1,lon1,lat2,lon2)
+	function wpgpxmapsDist(lat1,lon1,lat2,lon2)
 	{
 		// mathematically not correct but fast
 		var dLat = (lat2-lat1);
