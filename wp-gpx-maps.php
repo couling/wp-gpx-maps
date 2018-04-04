@@ -1,12 +1,14 @@
 <?php
 /*
-Plugin Name: WP-GPX-Maps
-Plugin URI: http://www.devfarm.it/
-Description: Draws a GPX track with altitude chart
-Version: 1.5.05
-Author: Bastianon Massimo
-Author URI: http://www.devfarm.it/
-*/
+ * Plugin Name: WP-GPX-Maps
+ * Plugin URI: http://www.devfarm.it/
+ * Description: Draws a GPX track with altitude chart
+ * Version: 1.5.05
+ * Author: Bastianon Massimo
+ * Author URI: http://www.devfarm.it/
+ * Text Domain: wp-gpx-maps
+ * Domain Path: /languages
+ */
 
 //error_reporting (E_ALL);
 
