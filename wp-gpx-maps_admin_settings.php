@@ -3,12 +3,6 @@
 	if ( !current_user_can('manage_options') )
 		return;
 
-?>
-
-<script type="text/javascript" src="http://meta100.github.com/mColorPicker/javascripts/mColorPicker_min.js" charset="UTF-8"></script>
-
-<?php
-	
 	$po = get_option('wpgpxmaps_pointsoffset');
 	$showW = get_option("wpgpxmaps_show_waypoint");	
 	$donotreducegpx = get_option("wpgpxmaps_donotreducegpx");
