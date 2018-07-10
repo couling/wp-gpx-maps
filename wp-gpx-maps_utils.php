@@ -220,7 +220,6 @@
 		
 		$gpx->registerXPathNamespace('a', 'http://www.topografix.com/GPX/1/0');
 		$gpx->registerXPathNamespace('b', 'http://www.topografix.com/GPX/1/1');
-		$gpx->registerXPathNamespace('gpxtpx', 'http://www.garmin.com/xmlschemas/TrackPointExtension/v1');
 		
 		$nodes = $gpx->xpath('//trk | //a:trk | //b:trk');
 		//normal gpx
@@ -228,14 +227,12 @@
 		if ( count($nodes) > 0 )	
 		{
 		
-			foreach($nodes as $_trk)
+			foreach($nodes as $trk)
 			{
 			
-				$trk = simplexml_load_string($_trk->asXML()); 
 				
 				$trk->registerXPathNamespace('a', 'http://www.topografix.com/GPX/1/0');
 				$trk->registerXPathNamespace('b', 'http://www.topografix.com/GPX/1/1');
-				$trk->registerXPathNamespace('gpxtpx', 'http://www.garmin.com/xmlschemas/TrackPointExtension/v1');
 
 				$trkpts = $trk->xpath('//trkpt | //a:trkpt | //b:trkpt');
 				
@@ -261,25 +258,26 @@
 					$grade = 0;
 
 					if (isset($trkpt->extensions))
-					{				
-						
-						$arr = json_decode( json_encode($trkpt->extensions) , 1);
+					{
+                        $arr = $trkpt->extensions->children();
+                        foreach ( $arr as $extension => $value )
+                        {
+                            if ($extension == 'TrackPointExtension') {
+                                if (isset($value->hr))    $hr =    "$value->hr";
+                                if (isset($value->atemp)) $atemp = "$value->atemp";
+                                if (isset($value->cad))   $cad =   "$value->cad";
+                            }
+                        }
 
-						if (isset($arr['gpxtpx:TrackPointExtension']))
+						$arr = $trkpt->extensions->children('http://www.garmin.com/xmlschemas/TrackPointExtension/v1');
+						foreach ( $arr as $extension => $value ) 
 						{
-							$tpe = $arr['gpxtpx:TrackPointExtension'];
-							$hr =    @$tpe["gpxtpx:hr"];
-							$atemp = @$tpe["gpxtpx:atemp"];
-							$cad =   @$tpe["gpxtpx:cad"];			
+							if ($extension == 'TrackPointExtension') {
+								if (isset($value->hr))    $hr =    "$value->hr";
+                            	if (isset($value->atemp)) $atemp = "$value->atemp";
+                            	if (isset($value->cad))   $cad =   "$value->cad";
+							}           
 						}
-						else if (isset($arr['TrackPointExtension']))
-						{
-							$tpe = $arr['TrackPointExtension'];
-							$hr =    @$tpe["hr"];
-							$atemp = @$tpe["atemp"];
-							$cad =   @$tpe["cad"];							
-						}
-						
 					}
 
 					if ($lastLat == 0 && $lastLon == 0)
